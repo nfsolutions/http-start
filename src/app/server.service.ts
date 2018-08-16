@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Http, Headers, Response} from '@angular/http';
+import {Headers, Http, Response} from '@angular/http';
 import 'rxjs/Rx';
 import {Observable} from 'rxjs';
 
@@ -33,6 +33,15 @@ export class ServerService {
         (error: Response) => {
           console.log(error);
           return Observable.throwError('something went wrong');
+        }
+      );
+  }
+
+  getAppName() {
+    return this.http.get('https://udemy-ng-http-74431.firebaseio.com/appName.json')
+      .map(
+        (response: Response) => {
+          return response.json();
         }
       );
   }
